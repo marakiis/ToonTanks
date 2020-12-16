@@ -54,6 +54,9 @@ private:
 	FVector MoveDirection;
 	FQuat RotationDirection;
 	FVector RotateTurretDirection;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	float FireRate = 2.f;
+	float LastFire = 0.f;
 	bool bFire = false;
 	bool bIsAlive = true;
 

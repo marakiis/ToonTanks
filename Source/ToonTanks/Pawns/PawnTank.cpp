@@ -72,6 +72,7 @@ void APawnTank::Fire()
 {
 	Super::Fire();
 	bFire = false;
+	LastFire = GetWorld()->GetTimeSeconds();
 }
 
 void APawnTank::CalculateMoveInput(float Value) 
@@ -93,6 +94,10 @@ void APawnTank::CalculateRotateTurretInput(float Value)
 
 void APawnTank::CalculateFire()
 {
+	if (GetWorld()->GetTimeSeconds() - LastFire < FireRate)
+	{
+		return;
+	}
 	bFire = true;
 }
 
