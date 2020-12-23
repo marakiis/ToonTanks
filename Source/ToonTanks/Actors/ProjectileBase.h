@@ -13,6 +13,17 @@ class TOONTANKS_API AProjectileBase : public AActor
 {
 	GENERATED_BODY()
 	
+public:	
+	// Sets default values for this actor's properties
+	AProjectileBase();
+	AProjectileBase(float InitialMovementSpeed);
+
+	void SetMovementSpeed(float NewMovementSpeed);
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 private:
 	//COMPONENTS
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -22,13 +33,15 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
 	UParticleSystemComponent* TrailParticle;
 	
-	
 	// VARIABLES
+	// Movement
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Move", meta = (AllowPrivateAccess = "true"))
+	float MovementSpeed = 1300;
+	// Damage
 	TSubclassOf<UDamageType> DamageType;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Damage", meta = (AllowPrivateAccess = "true"))
 	float Damage = 50;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Move", meta = (AllowPrivateAccess = "true"))
-	float MovementSpeed = 1300;
+	// Effects
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	UParticleSystem* HitParticle;
 	UPROPERTY(EditAnywhere, Category = "Effects")
@@ -41,12 +54,4 @@ private:
 	//FUNCTIONS
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpule, const FHitResult& Hit);
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Sets default values for this actor's properties
-	AProjectileBase();
 };

@@ -16,11 +16,9 @@ class TOONTANKS_API ATankGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 	
 public:
-
 	void ActorDied(AActor* DeadActor);
 
 protected:
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Game Loop")
 	int32 StartDelay = 3;
 	APlayerControllerBase* PlayerControllerRef = nullptr;
@@ -32,8 +30,7 @@ protected:
 	void GameOver(bool bPlayerWon);
 
 private:
-	// INTERNAL VARIABLES
-
+	// VARIABLES
 	APawnTank  *PlayerTank;
 	int32 TargetTurrets = 0;
 	
